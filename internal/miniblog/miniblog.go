@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/cjhw/miniblog/internal/pkg/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -27,6 +28,10 @@ Find more miniblog information at:
 		SilenceUsage: true,
 		// 指定调用 cmd.Execute() 时，执行的 Run 函数，函数执行失败会返回错误信息
 		RunE: func(cmd *cobra.Command, args []string) error {
+			// 初始化日志
+			log.Init(logOptions())
+			defer log.Sync() // Sync 将缓存中的日志刷新到磁盘文件中
+
 			return run()
 		},
 		// 这里设置命令运行时，不需要指定命令行参数
@@ -56,8 +61,8 @@ Find more miniblog information at:
 func run() error {
 	// 打印所有的配置项及其值
 	settings, _ := json.Marshal(viper.AllSettings())
-	fmt.Println(string(settings))
+	log.Infow(string(settings))
 	// 打印 db -> username 配置项的值
-	fmt.Println(viper.GetString("db.username"))
+	log.Infow(viper.GetString("db.username"))
 	return nil
 }
