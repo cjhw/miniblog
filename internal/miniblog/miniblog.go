@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/cjhw/miniblog/internal/pkg/log"
+	mw "github.com/cjhw/miniblog/internal/pkg/middleware"
 	"github.com/cjhw/miniblog/pkg/verflag"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"
@@ -14,8 +15,11 @@ import (
 
 var cfgFile string
 
+
+
 // NewMiniBlogCommand 创建一个 *cobra.Command 对象. 之后，可以使用 Command 对象的 Execute 方法来启动应用程序.
 func NewMiniBlogCommand() *cobra.Command {
+
 	cmd := &cobra.Command{
 		// 指定命令的名字，该名字会出现在帮助信息中
 		Use: "miniblog",
@@ -69,22 +73,28 @@ func run() error {
 	// 设置 Gin 模式
 	gin.SetMode(viper.GetString("runmode"))
 
-	// 创建gin引擎
+	// 创建 Gin 引擎
 	g := gin.New()
 
-	//	注册404 Handler
+	// gin.Recovery() 中间件，用来捕获任何 panic，并恢复
+	mws := []gin.HandlerFunc{gin.Recovery(), mw.NoCache, mw.Cors, mw.Secure, mw.RequestID()}
+
+	g.Use(mws...)
+
+	// 注册 404 Handler.
 	g.NoRoute(func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"code": 10003, "message": "Page not found"})
+		c.JSON(http.StatusOK, gin.H{"code": 10003, "message": "Page not found."})
 	})
 
-	// 注册 /healthz handler
+	// 注册 /healthz handler.
 	g.GET("/healthz", func(c *gin.Context) {
+		log.C(c).Infow("Healthz function called")
+
 		c.JSON(http.StatusOK, gin.H{"status": "ok"})
 	})
 
 	// 创建 HTTP Server 实例
 	httpsrv := &http.Server{Addr: viper.GetString("addr"), Handler: g}
-
 	// 运行 HTTP 服务器
 
 	// 打印一条日志，用来提示 HTTP 服务已经起来，方便排障

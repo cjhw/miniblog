@@ -7,3 +7,6 @@
 2023-01-08 16:27:05.352	info	miniblog/miniblog.go:68	{"db":{"database":"miniblog","host":"127.0.0.1","log-level":4,"max-connection-life-time":"10s","max-idle-connections":100,"max-open-connections":100,"password":"miniblog1234","username":"miniblog"},"log":{"disable-caller":false,"disable-stacktrace":false,"format":"console","level":"debug","output-paths":["./miniblog.log","stdout"]}}
 2023-01-08 16:27:05.353	info	miniblog/miniblog.go:70	miniblog
 2023-01-08 17:11:51.312	info	miniblog/miniblog.go:91	Start to listening the incoming requests on http address	{"addr": ":8080"}
+2023-02-02 17:52:01.075	info	miniblog/miniblog.go:91	Start to listening the incoming requests on http address	{"addr": ":8080"}
+2023-02-02 18:15:33.172	info	miniblog/miniblog.go:101	Start to listening the incoming requests on http address	{"addr": ":8080"}
+2023-02-02 18:16:44.611	info	miniblog/miniblog.go:91	Healthz function called	{"X-Request-ID": "aebd16cc-1c31-47b3-9de2-2410d9dc0e57"}
