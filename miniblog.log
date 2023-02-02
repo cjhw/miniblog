@@ -10,3 +10,6 @@
 2023-02-02 17:52:01.075	info	miniblog/miniblog.go:91	Start to listening the incoming requests on http address	{"addr": ":8080"}
 2023-02-02 18:15:33.172	info	miniblog/miniblog.go:101	Start to listening the incoming requests on http address	{"addr": ":8080"}
 2023-02-02 18:16:44.611	info	miniblog/miniblog.go:91	Healthz function called	{"X-Request-ID": "aebd16cc-1c31-47b3-9de2-2410d9dc0e57"}
+2023-02-02 18:58:30.884	info	miniblog/miniblog.go:103	Start to listening the incoming requests on http address	{"addr": ":8080"}
+2023-02-02 19:00:21.618	info	miniblog/miniblog.go:117	Shutting down server ...
+2023-02-02 19:00:21.620	info	miniblog/miniblog.go:129	Server exiting
