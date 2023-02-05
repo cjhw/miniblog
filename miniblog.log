@@ -17,3 +17,12 @@
 2023-02-05 02:09:11.223	info	miniblog/miniblog.go:96	Healthz function called	{"X-Request-ID": "6d7f5e42-91b1-4b3e-ae27-67aab297440f"}
 2023-02-05 02:11:04.782	info	miniblog/miniblog.go:119	Shutting down server ...
 2023-02-05 02:11:04.783	info	miniblog/miniblog.go:131	Server exiting
+2023-02-05 14:50:15.228	info	miniblog/miniblog.go:95	Start to listening the incoming requests on http address	{"addr": ":8080"}
+2023-02-05 14:51:43.387	info	user/create.go:15	Create user function called	{"X-Request-ID": "c06d33ac-57e6-4adb-a4b6-845ad26c9714"}
+2023-02-05 14:53:27.087	info	user/create.go:15	Create user function called	{"X-Request-ID": "3a840a07-dc93-4329-85d7-633d9b522b1c"}
+2023-02-05 15:05:00.681	info	miniblog/miniblog.go:109	Shutting down server ...
+2023-02-05 15:05:00.682	info	miniblog/miniblog.go:121	Server exiting
+2023-02-05 15:05:03.888	info	miniblog/miniblog.go:100	Start to listening the incoming requests on http address	{"addr": ":8080"}
+2023-02-05 15:05:10.415	info	user/create.go:15	Create user function called	{"X-Request-ID": "c2592127-7761-400a-9644-3d63a96c874f"}
+2023-02-05 15:06:02.772	info	miniblog/miniblog.go:114	Shutting down server ...
+2023-02-05 15:06:02.772	info	miniblog/miniblog.go:126	Server exiting
