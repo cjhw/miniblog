@@ -15,7 +15,7 @@ func (err *Errno) Error() string {
 }
 
 // SetMessage 设置 Errno 类型错误中的 Message 字段.
-func (err *Errno) SendMessage(format string, args ...interface{}) *Errno {
+func (err *Errno) SetMessage(format string, args ...interface{}) *Errno {
 	err.Message = fmt.Sprintf(format, args...)
 	return err
 }
