@@ -10,13 +10,11 @@ import (
 	v1 "github.com/cjhw/miniblog/pkg/api/miniblog/v1"
 )
 
-const defaultMethods = "(GET)|(POST)|(PUT)|(DELETE)"
+// ChangePassword 用来修改指定用户的密码.
+func (ctrl *UserController) ChangePassword(c *gin.Context) {
+	log.C(c).Infow("Change password function called")
 
-// Create 创建一个新的用户.
-func (ctrl *UserController) Create(c *gin.Context) {
-	log.C(c).Infow("Create user function called")
-
-	var r v1.CreateUserRequest
+	var r v1.ChangePasswordRequest
 	if err := c.ShouldBindJSON(&r); err != nil {
 		core.WriteResponse(c, errno.ErrBind, nil)
 
@@ -29,13 +27,7 @@ func (ctrl *UserController) Create(c *gin.Context) {
 		return
 	}
 
-	if err := ctrl.b.Users().Create(c, &r); err != nil {
-		core.WriteResponse(c, err, nil)
-
-		return
-	}
-
-	if _, err := ctrl.a.AddNamedPolicy("p", r.Username, "/v1/users/"+r.Username, defaultMethods); err != nil {
+	if err := ctrl.b.Users().ChangePassword(c, c.Param("name"), &r); err != nil {
 		core.WriteResponse(c, err, nil)
 
 		return
